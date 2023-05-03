@@ -15,7 +15,11 @@ jobs:
     # name: stale issues
 
     steps:
+    - name: Checkout repository
+        uses: actions/checkout@v2
+
     - name: Stale issues
+      run: echo "Running Github Action with name '${{ github.action }}'"
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,10 +29,12 @@ jobs:
           To avoid being marked as 'stale' please add 'awaiting-maintainer' label or add a comment. Thank you for your contributions '
         stale-issue-label: 'stale'
         exempt-issue-labels: 'awaiting-maintainer, obsolete'
-        ascending: true
+        ascending: false
+        days-before-close: 0
         enable-statistics: true
 
     - name: Track stale issues and check if obsolete
+      run: echo "Running Github Action with name '${{ github.action }}'"
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,10 +46,13 @@ jobs:
         only-labels: 'stale'
         exempt-issue-labels: awaiting-maintainer
         remove-stale-when-updated: true
-        ascending: true
+        ascending: false
+        days-before-close: 0
         enable-statistics: true
 
-    - uses: actions/stale@v5
+    - name: Close obsolete issues
+      run: echo "Running Github Action with name '${{ github.action }}'"
+      uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         days-before-issue-stale: 0
@@ -51,7 +60,7 @@ jobs:
           @author, We are closing this as there was no activity in this issue for last 0 days. Please reopen if you’d like to discuss anything further.
         only-labels: 'obsolete'
         exempt-issue-labels: awaiting-maintainer
-        ascending: true
+        ascending: false
         days-before-close: 0
         close-issue-reason: "not_planned"
         stale-issue-label: 'wontfix'
