@@ -20,10 +20,10 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         days-before-issue-stale: 0
+        stale-issue-label: 'stale'
         stale-issue-message: >
           'This issue is marked as Stale due to inactivity for more than 0 days. 
           To avoid being marked as 'stale' please add 'awaiting-maintainer' label or add a comment. Thank you for your contributions '
-        stale-issue-label: 'stale'
         exempt-issue-labels: 'awaiting-maintainer, obsolete'
         ascending: ture
         days-before-close: -1
@@ -33,7 +33,7 @@ jobs:
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        days-before-issue-stale: 0
+        days-before-issue-stale: 30
         stale-issue-message: >
           This issue is marked as obsolete due to inactivity for last 0 days. 
           To avoid issue getting closed in next 30 days, please add a comment or add 'awaiting-maintainer' label. Thank you for your contributions
@@ -49,7 +49,7 @@ jobs:
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        days-before-issue-stale: 0
+        days-before-issue-stale: 30
         close-issue-message: >
           @author, We are closing this as there was no activity in this issue for last 0 days. Please reopen if you’d like to discuss anything further.
         only-labels: 'obsolete'
