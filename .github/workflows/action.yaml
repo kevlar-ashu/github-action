@@ -62,9 +62,3 @@ jobs:
         close-issue-reason: "not_planned"
         stale-issue-label: 'wontfix'
         enable-statistics: true
-
-    - name: Debug
-      uses: actions/toolkit@v2
-      with:
-        args: |
-          echo "Github '${{ github.action }}' Action bot completed successfully!"
