@@ -33,7 +33,7 @@ jobs:
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        days-before-issue-stale: 30
+        days-before-issue-stale: 0
         stale-issue-message: >
           This issue is marked as obsolete due to inactivity for last 0 days. 
           To avoid issue getting closed in next 30 days, please add a comment or add 'awaiting-maintainer' label. Thank you for your contributions
