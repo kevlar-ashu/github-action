@@ -26,7 +26,7 @@ jobs:
         stale-issue-label: 'stale'
         exempt-issue-labels: 'awaiting-maintainer, obsolete'
         ascending: false
-        days-before-close: 1
+        days-before-close: 0
         enable-statistics: true
 
     - name: Track stale issues and check if obsolete
@@ -42,7 +42,7 @@ jobs:
         exempt-issue-labels: awaiting-maintainer
         remove-stale-when-updated: true
         ascending: false
-        days-before-close: 0
+        days-before-close: 1
         enable-statistics: true
 
     - name: Close obsolete issues
