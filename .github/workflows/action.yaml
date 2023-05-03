@@ -25,15 +25,15 @@ jobs:
           To avoid being marked as 'stale' please add 'awaiting-maintainer' label or add a comment. Thank you for your contributions '
         stale-issue-label: 'stale'
         exempt-issue-labels: 'awaiting-maintainer, obsolete'
-        ascending: false
-        days-before-close: 0
+        ascending: ture
+        days-before-close: -1
         enable-statistics: true
 
     - name: Track stale issues and check if obsolete
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        days-before-issue-stale: 0
+        days-before-issue-stale: 30
         stale-issue-message: >
           This issue is marked as obsolete due to inactivity for last 0 days. 
           To avoid issue getting closed in next 30 days, please add a comment or add 'awaiting-maintainer' label. Thank you for your contributions
@@ -41,20 +41,20 @@ jobs:
         only-labels: 'stale'
         exempt-issue-labels: awaiting-maintainer
         remove-stale-when-updated: true
-        ascending: false
-        days-before-close: 1
+        ascending: true
+        days-before-close: -1
         enable-statistics: true
 
     - name: Close obsolete issues
       uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        days-before-issue-stale: 0
+        days-before-issue-stale: 30
         close-issue-message: >
           @author, We are closing this as there was no activity in this issue for last 0 days. Please reopen if you’d like to discuss anything further.
         only-labels: 'obsolete'
         exempt-issue-labels: awaiting-maintainer
-        ascending: false
+        ascending: true
         days-before-close: 0
         close-issue-reason: "not_planned"
         stale-issue-label: 'wontfix'
