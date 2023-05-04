@@ -23,7 +23,7 @@ jobs:
           @author, We are closing this as there was no activity in this issue for last 0 days. Please reopen if you’d like to discuss anything further.
         only-labels: 'obsolete'
         exempt-issue-labels: awaiting-maintainer
-        #labels-to-remove-when-stale: 'obsolete'
+        labels-to-remove-when-stale: 'obsolete'
         remove-stale-when-updated: true
         ascending: true
         days-before-close: 0
