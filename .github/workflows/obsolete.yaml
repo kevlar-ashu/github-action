@@ -1,0 +1,32 @@
+# https://github.com/actions/stale
+name: mark issues as obsolete 
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 10 1,15 * *'
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+    - name: Track stale issues and check if obsolete
+      uses: actions/stale@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        days-before-issue-stale: 0
+        stale-issue-message: >
+          This issue is marked as obsolete due to inactivity for last 0 days. 
+          To avoid issue getting closed in next 30 days, please add a comment or add 'awaiting-maintainer' label. Thank you for your contributions
+        stale-issue-label: 'obsolete'
+        only-labels: 'stale'
+        exempt-issue-labels: awaiting-maintainer
+        #labels-to-remove-when-stale: 'stale'
+        remove-stale-when-updated: true
+        ascending: true
+        days-before-close: -1
+        enable-statistics: true

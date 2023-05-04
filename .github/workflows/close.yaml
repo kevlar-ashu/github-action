@@ -1,0 +1,32 @@
+# https://github.com/actions/stale
+name: close issues
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 10 1,15 * *'
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+    - name: Close obsolete issues
+      uses: actions/stale@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        days-before-issue-stale: 0
+        close-issue-message: >
+          @author, We are closing this as there was no activity in this issue for last 0 days. Please reopen if you’d like to discuss anything further.
+        only-labels: 'obsolete'
+        exempt-issue-labels: awaiting-maintainer
+        #labels-to-remove-when-stale: 'obsolete'
+        remove-stale-when-updated: true
+        ascending: true
+        days-before-close: 0
+        close-issue-reason: "not_planned"
+        stale-issue-label: 'wontfix'
+        enable-statistics: true
