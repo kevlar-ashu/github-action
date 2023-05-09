@@ -32,7 +32,7 @@ jobs:
         enable-statistics: true
     
     - name: Remove stale label
-      uses: octokit/rest.js@v5.x
+      #uses: octokit/rest.js@v5.x
       with:
       github_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
