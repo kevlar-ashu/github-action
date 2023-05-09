@@ -1,5 +1,5 @@
 # https://github.com/actions/stale
-name: close issues
+name: Close Obsolete Issues
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
   - cron: '0 10 1,15 * *'
 
 jobs:
-  stale:
+  close-obsolete-issues:
 
     runs-on: ubuntu-latest
     permissions:
@@ -23,10 +23,11 @@ jobs:
           @author, We are closing this as there was no activity in this issue for last 0 days. Please reopen if you’d like to discuss anything further.
         only-labels: 'obsolete'
         exempt-issue-labels: awaiting-maintainer
-        labels-to-remove-when-stale: 'obsolete'
-        remove-stale-when-updated: true
+        #labels-to-remove-when-stale: 'obsolete'
+        #remove-stale-when-updated: true
         ascending: true
         days-before-close: 0
         close-issue-reason: "not_planned"
         stale-issue-label: 'wontfix'
+        labels-to-remove-when-closed: obsolete, stale
         enable-statistics: true

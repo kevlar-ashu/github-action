@@ -1,5 +1,5 @@
 # https://github.com/actions/stale
-name: mark issues as stale
+name: Stale Issues
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
   - cron: '0 10 1,15 * *'
 
 jobs:
-  stale:
+  stale-issues:
 
     runs-on: ubuntu-latest
     permissions:
@@ -19,10 +19,10 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         days-before-issue-stale: 0
-        stale-issue-label: 'stale'
         stale-issue-message: >
           'This issue is marked as Stale due to inactivity for more than 0 days. 
           To avoid being marked as 'stale' please add 'awaiting-maintainer' label or add a comment. Thank you for your contributions '
+        stale-issue-label: 'stale'
         exempt-issue-labels: 'awaiting-maintainer, obsolete'
         ascending: ture
         days-before-close: -1
