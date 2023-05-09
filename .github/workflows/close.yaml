@@ -17,6 +17,7 @@ jobs:
     - name: Close obsolete issues
       uses: actions/stale@v5
       with:
+        color: 'ffffff'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         days-before-issue-stale: 0
         close-issue-message: >

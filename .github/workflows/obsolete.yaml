@@ -30,3 +30,23 @@ jobs:
         ascending: true
         days-before-close: -1
         enable-statistics: true
+    
+    - name: Remove stale label
+        uses: octokit/rest.js@v5.x
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          const { data: labels } = await octokit.issues.listLabelsOnIssue({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+          const staleLabel = labels.find((label) => label.name === 'stale');
+          if (staleLabel) {
+            await octokit.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: 'stale',
+            });
+          }
