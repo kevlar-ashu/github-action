@@ -34,7 +34,7 @@ jobs:
     - name: Remove stale label
       #uses: octokit/rest.js@v5.x
       with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
+      repo-token: ${{ secrets.GITHUB_TOKEN }}
       run: |
         const { data: labels } = await octokit.issues.listLabelsOnIssue({
           owner: context.repo.owner,
