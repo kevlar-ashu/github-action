@@ -36,17 +36,17 @@ jobs:
       with:
       github_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
-    const { data: labels } = await octokit.issues.listLabelsOnIssue({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      issue_number: context.issue.number,
-    });
-    const staleLabel = labels.find((label) => label.name === 'stale');
-    if (staleLabel) {
-      await octokit.issues.removeLabel({
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        issue_number: context.issue.number,
-        name: 'stale',
-      });
-    }
+        const { data: labels } = await octokit.issues.listLabelsOnIssue({
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          issue_number: context.issue.number,
+        });
+        const staleLabel = labels.find((label) => label.name === 'stale');
+        if (staleLabel) {
+          await octokit.issues.removeLabel({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            name: 'stale',
+          });
+        }
