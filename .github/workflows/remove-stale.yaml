@@ -2,7 +2,7 @@ name: Obsolete
 
 on:
   issues:
-    types: [labeled]
+    types: [obsolete]
 
 jobs:
   obsolete:
