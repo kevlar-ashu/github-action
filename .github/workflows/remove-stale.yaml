@@ -1,4 +1,4 @@
-name: Remove stale label
+name: Remove stale label when obsolete is added
 
 on:
   workflow_dispatch:
@@ -7,16 +7,15 @@ on:
 
 jobs:
   remove_label:
-
-      runs-on: ubuntu-latest
-      permissions:
-        issues: write
-      steps:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
       - uses: actions/checkout@v2
       - uses: actions-ecosystem/action-remove-labels@v1
-          #if: ${{ github.event.issue.label.name == 'stale' && github.event.issue.label.name == 'obsolete' }}
-            with:
-              labels: stale
+        if: ${{ github.event.issue.label.name == 'stale' && github.event.issue.label.name == 'obsolete' }}
+        with:
+          labels: stale
   # obsolete:
   #   runs-on: ubuntu-latest
   #   steps:
