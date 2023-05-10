@@ -1,8 +1,8 @@
-name: Obsolete
+name: Remove stale label
 
 on:
   issues:
-    types: [obsolete]
+    types: [labeled]
 
 jobs:
   obsolete:
@@ -20,7 +20,7 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            const staleLabel = labels.find((label) => label.name === 'stale');
+            const staleLabel = labels.find((label) => label.name === 'obsolete');
             if (staleLabel) {
               await github.issues.removeLabel({
                 owner: context.repo.owner,
