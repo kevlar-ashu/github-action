@@ -1,8 +1,9 @@
 name: Remove stale label
 
 on:
-  issues:
-    types: [labeled]
+  workflow_dispatch:
+  schedule:
+  - cron: '0 11 1,15 * *'
 
 jobs:
   obsolete:
