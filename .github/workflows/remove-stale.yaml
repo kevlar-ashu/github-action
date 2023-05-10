@@ -7,12 +7,13 @@ on:
 
 jobs:
   remove_label:
+
       runs-on: ubuntu-latest
       permissions:
-      issues: write
+        issues: write
       steps:
-        - uses: actions/checkout@v2
-        - uses: actions-ecosystem/action-remove-labels@v1
+      - uses: actions/checkout@v2
+      - uses: actions-ecosystem/action-remove-labels@v1
           if: ${{ github.event.issue.label.name == 'stale' && github.event.issue.label.name == 'obsolete' }}
             with:
               labels: stale
