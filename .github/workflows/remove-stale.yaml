@@ -1,0 +1,31 @@
+name: Obsolete
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  obsolete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Remove stale label
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { data: labels } = await github.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const staleLabel = labels.find((label) => label.name === 'stale');
+            if (staleLabel) {
+              await github.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'stale',
+              });
+            }
